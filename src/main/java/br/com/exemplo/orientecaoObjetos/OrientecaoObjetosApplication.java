@@ -8,6 +8,8 @@ public class OrientecaoObjetosApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrientecaoObjetosApplication.class, args);
+		
+		//
 	}
 
 }

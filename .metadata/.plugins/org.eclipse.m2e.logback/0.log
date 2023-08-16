@@ -1,0 +1,78 @@
+2023-08-07 19:52:15,287 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2023-08-07 19:52:16,606 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Updating Gradle version information cache failed. Using outdated cache.
+2023-08-07 19:53:54,673 [Worker-3: Installing artifact] WARN  o.e.m.c.i.embedder.EclipseLogger - Failed to close spy org.eclipse.m2e.internal.maven.listener.M2EMavenBuildDataBridge: Cannot invoke "java.nio.channels.SocketChannel.close()" because "this.writeChannel" is null
+2023-08-07 19:53:54,706 [Worker-3: Installing artifact] ERROR o.e.m.c.u.i.w.MavenInstallFileWizard - Execution error; org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal [32morg.apache.maven.plugins:maven-install-plugin:2.4:install-file[m [1m(default-cli)[m on project [36mstandalone-pom[m: [1;31mExecution default-cli of goal org.apache.maven.plugins:maven-install-plugin:2.4:install-file failed: Plugin org.apache.maven.plugins:maven-install-plugin:2.4 or one of its dependencies could not be resolved: Failed to collect dependencies at org.apache.maven.plugins:maven-install-plugin:jar:2.4 -> org.apache.maven:maven-plugin-api:jar:2.0.6[m
+org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal [32morg.apache.maven.plugins:maven-install-plugin:2.4:install-file[m [1m(default-cli)[m on project [36mstandalone-pom[m: [1;31mExecution default-cli of goal org.apache.maven.plugins:maven-install-plugin:2.4:install-file failed: Plugin org.apache.maven.plugins:maven-install-plugin:2.4 or one of its dependencies could not be resolved: Failed to collect dependencies at org.apache.maven.plugins:maven-install-plugin:jar:2.4 -> org.apache.maven:maven-plugin-api:jar:2.0.6[m
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:375)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:351)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:215)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:171)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:163)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:117)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:81)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:56)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:298)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:192)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:105)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.lambda$1(MavenExecutionContext.java:307)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:394)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:275)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:214)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:299)
+	at org.eclipse.m2e.core.ui.internal.wizards.MavenInstallFileWizard.lambda$0(MavenInstallFileWizard.java:105)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:166)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.apache.maven.plugin.PluginExecutionException: Execution default-cli of goal org.apache.maven.plugins:maven-install-plugin:2.4:install-file failed: Plugin org.apache.maven.plugins:maven-install-plugin:2.4 or one of its dependencies could not be resolved: Failed to collect dependencies at org.apache.maven.plugins:maven-install-plugin:jar:2.4 -> org.apache.maven:maven-plugin-api:jar:2.0.6
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:109)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:370)
+	... 19 common frames omitted
+Caused by: org.apache.maven.plugin.PluginResolutionException: Plugin org.apache.maven.plugins:maven-install-plugin:2.4 or one of its dependencies could not be resolved: Failed to collect dependencies at org.apache.maven.plugins:maven-install-plugin:jar:2.4 -> org.apache.maven:maven-plugin-api:jar:2.0.6
+	at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolveInternal(DefaultPluginDependenciesResolver.java:230)
+	at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve(DefaultPluginDependenciesResolver.java:165)
+	at org.eclipse.m2e.core.internal.project.registry.EclipsePluginDependenciesResolver.resolve(EclipsePluginDependenciesResolver.java:55)
+	at org.apache.maven.plugin.internal.DefaultMavenPluginManager.createPluginRealm(DefaultMavenPluginManager.java:404)
+	at org.apache.maven.plugin.internal.DefaultMavenPluginManager.setupPluginRealm(DefaultMavenPluginManager.java:374)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.getPluginRealm(DefaultBuildPluginManager.java:234)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:105)
+	... 20 common frames omitted
+Caused by: org.eclipse.aether.collection.DependencyCollectionException: Failed to collect dependencies at org.apache.maven.plugins:maven-install-plugin:jar:2.4 -> org.apache.maven:maven-plugin-api:jar:2.0.6
+	at org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:288)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.collectDependencies(DefaultRepositorySystem.java:284)
+	at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolveInternal(DefaultPluginDependenciesResolver.java:218)
+	... 26 common frames omitted
+Caused by: org.eclipse.aether.resolution.ArtifactDescriptorException: Failed to read artifact descriptor for org.apache.maven:maven-plugin-api:jar:2.0.6
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:305)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor(DefaultArtifactDescriptorReader.java:171)
+	at org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector.resolveCachedArtifactDescriptor(DefaultDependencyCollector.java:538)
+	at org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector.getArtifactDescriptorResult(DefaultDependencyCollector.java:523)
+	at org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:410)
+	at org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector.processDependency(DefaultDependencyCollector.java:362)
+	at org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector.process(DefaultDependencyCollector.java:349)
+	at org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector.collectDependencies(DefaultDependencyCollector.java:254)
+	... 28 common frames omitted
+Caused by: org.apache.maven.model.resolution.UnresolvableModelException: Could not transfer artifact org.apache:apache:pom:3 from/to central (https://repo.maven.apache.org/maven2): No connector factories available
+	at org.apache.maven.repository.internal.DefaultModelResolver.resolveModel(DefaultModelResolver.java:176)
+	at org.apache.maven.repository.internal.DefaultModelResolver.resolveModel(DefaultModelResolver.java:222)
+	at org.apache.maven.model.building.DefaultModelBuilder.readParentExternally(DefaultModelBuilder.java:1150)
+	at org.apache.maven.model.building.DefaultModelBuilder.readParent(DefaultModelBuilder.java:916)
+	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:361)
+	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:267)
+	at org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom(DefaultArtifactDescriptorReader.java:296)
+	... 35 common frames omitted
+Caused by: org.eclipse.aether.resolution.ArtifactResolutionException: Could not transfer artifact org.apache:apache:pom:3 from/to central (https://repo.maven.apache.org/maven2): No connector factories available
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:425)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:229)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:207)
+	at org.apache.maven.repository.internal.DefaultModelResolver.resolveModel(DefaultModelResolver.java:172)
+	... 41 common frames omitted
+Caused by: org.eclipse.aether.transfer.ArtifactTransferException: Could not transfer artifact org.apache:apache:pom:3 from/to central (https://repo.maven.apache.org/maven2): No connector factories available
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:521)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:402)
+	... 44 common frames omitted
+Caused by: org.eclipse.aether.transfer.NoRepositoryConnectorException: No connector factories available
+	at org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider.newRepositoryConnector(DefaultRepositoryConnectorProvider.java:167)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:512)
+	... 45 common frames omitted
+2023-08-07 19:54:13,967 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2023-08-07 19:55:43,344 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
