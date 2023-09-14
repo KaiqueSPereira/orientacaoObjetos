@@ -5,11 +5,13 @@ import java.util.List;
 import br.com.exemplo.orientecaoObjetos.model.Endereco;
 
 public class UserDto {
+	
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
+	
 	private List<Endereco> enderecos;
 	
 	public UserDto () {
@@ -84,4 +86,3 @@ public class UserDto {
 	
 
 }
-

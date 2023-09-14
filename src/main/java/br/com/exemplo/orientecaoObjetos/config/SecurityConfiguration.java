@@ -19,10 +19,11 @@ import br.com.exemplo.orientecaoObjetos.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
-	@Autowired 
+	@Autowired
 	private UserService userService;
+	
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -34,40 +35,36 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 		auth.setUserDetailsService(userService);
 		auth.setPasswordEncoder(passwordEncoder());
 		return auth;
-		
 	}
 	
-
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
-	@Override 
-	protected void  configure(HttpSecurity http) throws Exception {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeHttpRequests()
-			.antMatchers("/registration**",
-						"/registration/**",
-						"/js/**",
-						"/css/**",
-						"/img/**").permitAll()
-			.and().authorizeRequests()
-			.antMatchers(GET, "/users/**").hasAnyAuthority("ROLE_USER")
-			.anyRequest().authenticated()
-			.and()
-			.formLogin().defaultSuccessUrl("/home", true)
-			.loginPage("/login")
-			.permitAll()
-			.and()
-			.logout()
-			.invalidateHttpSession(true)
-			.clearAuthentication(true)
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/login?logout")
-			.permitAll();
-		
+		http.authorizeRequests()
+		    .antMatchers("/registration**",
+		    		     "/registration/**",
+		    		     "/js/**",
+		    		     "/css/**",
+		    		     "/img/**").permitAll()
+		    .and().authorizeRequests()
+		    .antMatchers(GET, "/users/**").hasAnyAuthority("ROLE_USER")
+		    .anyRequest().authenticated()
+		    .and()
+		    .formLogin().defaultSuccessUrl("/home", true)
+		    .loginPage("/login")
+		    .permitAll()
+		    .and()
+		    .logout()
+		    .invalidateHttpSession(true)
+		    .clearAuthentication(true)
+		    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		    .logoutSuccessUrl("/login?logout")
+		    .permitAll();
 	}
-	
 	
 }
