@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		    .antMatchers(GET, "/users/**").hasAnyAuthority("ROLE_USER")
 		    .anyRequest().authenticated()
 		    .and()
-		    .formLogin().defaultSuccessUrl("/home", true)
+		    .formLogin().defaultSuccessUrl("/users/home", true)
 		    .loginPage("/login")
 		    .permitAll()
 		    .and()
