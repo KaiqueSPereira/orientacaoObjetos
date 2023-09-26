@@ -14,7 +14,7 @@
     </script>
      
      
-     <script type="text/javascript" src="../static/js/function.js"></script>
+     <script type="text/javascript" src="../static/js/busca_cep.js"></script>
 </head>
 <body>
 	<!-- create navigation bar ( header) -->
@@ -30,6 +30,14 @@
 				</button>
 				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
 					Login Module</a>
+			</div>
+			<div id="navbar" class="collapse navber-collapse">
+				<ul class="nav navbar-nav">
+					<li> <a th:href="@{/users/perfil/{username}(username=${username})}">Perfil</a></li>
+					<li><a>Sou Administrador</a></li>
+					<li><a>Sou Usuário Comum</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -71,13 +79,23 @@
 					</div>
 					
 					<div id="campo_email" class="alert alert-danger" style="display: none"></div>
-
-					<div class="form-group">
-						<label class="control-label" for="password"> Password </label> <input
-							id="password" class="form-control" type="password"
-							th:field="*{password}" required autofocus="autofocus" />
+					
+					<div th:each = "endereco: ${enderecos}"> 
+						<div th:if="${!endereco.empty}">
+							<div class="form-group" >
+								<label class="control-label" for="logradouro"> Logradouro </label> <input
+									id="logradouro" class="form-control" type="text"
+									th:field="*{enderecos.getLogradouro}" required autofocus="autofocus" />
+							</div>
+						</div>
+						<div th:if="${!endereco.empty}">
+							<div class="form-group" >
+								<label class="control-label" for="logradouro"> Logradouro </label> <input
+									id="logradouro" class="form-control" type="text"
+									th:field="*{enderecos.getLogradouro}" required autofocus="autofocus" />
+							</div>
+						</div>
 					</div>
-
 					<div class="form-group">
 						<button type="submit" class="btn btn-success"
 						id="botao"
