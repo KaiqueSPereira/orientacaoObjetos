@@ -17,32 +17,37 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
+	
+	
+	
 	@GetMapping("/users/home")
 	public String homeUser(Model model) {
 		
 		String home = "index";
 		User user = userService.getAuthenticatedUser();
 		String username = user.getEmail();
-		model.addAttribute("username",username);
+		model.addAttribute("username", username);
 		
-		return "home";
+		return home;
 	}
 	
+	
 	@GetMapping("/users/perfil/{username}")
-	public String showPerfilForm(@PathVariable("username")String username, ModelMap model) {
+	public String showPerfilForm(@PathVariable("username") String username, ModelMap model) {
 		
 		UserDto userDto = new UserDto();
 		userDto.setEmail(username);
 		User user = userService.findByEmail(userDto.getEmail());
+		
+		System.out.println(user.getFirstName());
 		model.addAttribute("user", user);
 		
 		return "update-registration";
-		
 	}
-	
-}
 
+}

@@ -3,6 +3,9 @@ package br.com.exemplo.orientecaoObjetos.model;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.ArrayList;
+
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -44,9 +47,10 @@ public class User {
 	private LocalDate dataNascimento;
 	
 	// 1:N
-	@OneToMany   // Um usuário para muitos endereços
-	@JoinColumn(name="endereco_id")  // Chave estrangeira FK
-	private List<Endereco> enderecos;
+	
+	
+	@OneToMany (mappedBy = "user",cascade = CascadeType.ALL)  // Um usuário para muitos endereços
+		private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	
 	// M:N
