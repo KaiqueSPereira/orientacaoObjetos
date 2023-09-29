@@ -59,19 +59,17 @@
 
 				<h1>Meu Perfil</h1>
 
-				<form th:action="@{/registration}" method="post" th:object="${user}">
+				<form th:action="@{/users/perfil}" method="post" th:object="${user}">
 					<div class="form-group">
 						<label class="control-label" for="firstName"> First Name </label>
 						<input id="firstName" class="form-control" th:field="*{firstName}"
 							required autofocus="autofocus" />
 					</div>
-
 					<div class="form-group">
 						<label class="control-label" for="lastName"> Last Name </label> <input
 							id="lastName" class="form-control" th:field="*{lastName}"
 							required autofocus="autofocus" />
 					</div>
-
 					<div class="form-group">
 						<label class="control-label" for="email"> Email </label> <input
 							id="email" class="form-control" th:field="*{email}" 
@@ -79,53 +77,43 @@
 							required
 							autofocus="autofocus" />	
 					</div>
-					
 					<div id="campo_email" class="alert alert-danger" style="display: none"></div>
-
 					      <div class="form-group">
 						    <label class="control-label" for="datadeNascimento">Data de Nascimento</label> <input
 							  id="datadeNascimento" class="form-control" type="date"
 							   th:field="*{dataNascimento}" required autofocus="autofocus" />
-							   
 					      </div>
 					      <div class="form-group">
 						    <label class="control-label" for="cep"> cep</label> <input
 							  id="cep" class="form-control" type="text"
 							   th:field="*{enderecos[0].cep}" required autofocus="autofocus" />
-							   
 					      </div>
 					      <div class="form-group">
 						    <label class="control-label" for="logradouro"> Logradouro</label> <input
 							  id="logradouro" class="form-control" type="text"
 							   th:field="*{enderecos[0].logradouro}" required autofocus="autofocus" />
-							   
 					      </div>
 					  <div class="form-group">
 						    <label class="control-label" for="bairro"> Bairro</label> <input
 							  id="bairro" class="form-control" type="text"
 							   th:field="*{enderecos[0].bairro}" required autofocus="autofocus" />
-							   
 					      </div>
-					   
 					   <div class="form-group">
 						    <label class="control-label" for="cidade"> Cidade</label> <input
 							  id="cidade" class="form-control" type="text"
 							   th:field="*{enderecos[0].cidade}" required autofocus="autofocus" />
-							   
 					      </div>
 					    <div class="form-group">
-						    <label class="control-label" for="uf"> uf</label> <input
+						    <label class="control-label" for="uf"> Uf</label> <input
 							  id="uf" class="form-control" type="text"
 							   th:field="*{enderecos[0].uf}" required autofocus="autofocus" />
-							   
 					      </div>
 					  
-                   
 					<div class="form-group">
 						<button type="submit" class="btn btn-success"
 						id="botao"
 						onclick=""
-						>Register</button>
+						>Atualizar Perfil</button>
 						<span>Already registered? <a href="/" th:href="@{/login}">Login
 								here</a></span>
 					</div>
