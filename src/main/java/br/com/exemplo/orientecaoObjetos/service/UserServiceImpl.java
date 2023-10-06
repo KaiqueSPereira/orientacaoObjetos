@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.exemplo.orientecaoObjetos.model.Endereco;
 import br.com.exemplo.orientecaoObjetos.model.Role;
 import br.com.exemplo.orientecaoObjetos.model.User;
 import br.com.exemplo.orientecaoObjetos.repository.RoleRepository;
@@ -48,8 +50,17 @@ public class UserServiceImpl implements UserService {
 				             userDto.getLastName(), 
 				             userDto.getEmail(), 
 				             passwordEncoder.encode(userDto.getPassword()),
-				             new ArrayList<>(),
+				             
 				             new ArrayList<>());
+		
+		List<Endereco> enderecos = new ArrayList<>();
+		Endereco endereco = new Endereco();
+		//Relacionamento entre endereço e user
+		endereco.setUser(user);
+		enderecos.add(endereco);
+		//Relacionamento entre user e endercos 
+		user.setEnderecos(enderecos);
+		
 		      userRepository.save(user);
 	this.addRoleToUser(user.getEmail(), "ROLE_USER");
 	return user;
@@ -111,10 +122,20 @@ public class UserServiceImpl implements UserService {
 	public User update(UserDto userDto) {
 		
 		User user = userRepository.findByEmail(userDto.getEmail());
+		//Buscar o endereço Principal
+		Endereco enderecoBd = user.getEnderecos().get(0);
+		enderecoBd.setCep(userDto.getEnderecos().get(0).getCep());
+		enderecoBd.setLogradouro(userDto.getEnderecos().get(0).getLogradouro());
+		enderecoBd.setBairro(userDto.getEnderecos().get(0).getBairro());
+		enderecoBd.setCidade(userDto.getEnderecos().get(0).getCidade());
+		enderecoBd.setUf(userDto.getEnderecos().get(0).getUf());
+		
+		//Outros dados do usuário
+		
 		user.setFirstName(userDto.getFirstName());
 		user.setLastName(userDto.getLastName());
 		user.setDataNascimento(userDto.getDataNascimento());
-		user.setEnderecos(userDto.getEnderecos());
+		
 		
 		return userRepository.save(user);
 	}
