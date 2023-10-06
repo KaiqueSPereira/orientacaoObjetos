@@ -3,6 +3,7 @@ package br.com.exemplo.orientecaoObjetos.model;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.ArrayList;
 
 
@@ -45,6 +46,7 @@ public class User {
 	private String email;
 	private String password;
 	private LocalDate dataNascimento;
+	private String principalRole;
 	
 	// 1:N
 	
@@ -164,6 +166,32 @@ public class User {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
+	public String getPrincipalRole() {
+		return principalRole;
+	}
+
+	public void setPrincipalRole(String principalRole) {
+		this.principalRole = principalRole;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 	
 	
 	
