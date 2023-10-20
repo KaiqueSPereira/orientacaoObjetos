@@ -1,5 +1,7 @@
 package br.com.exemplo.orientecaoObjetos.wed;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import br.com.exemplo.orientecaoObjetos.model.Role;
 import br.com.exemplo.orientecaoObjetos.model.User;
 import br.com.exemplo.orientecaoObjetos.service.UserService;
 import br.com.exemplo.orientecaoObjetos.wed.dto.UserDto;
@@ -26,6 +29,26 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/users/living-room")
+	public String livingRoom () {
+		String home = "redirect:/users/index";
+		
+		User user = userService.getAuthenticatedUser();
+		String principalRole = user.getPrincipalRole();
+		Collection<Role> roles = user.getRoles();
+		
+		for (Role r : roles) {
+			if (r.getName().equals("ROLE_ADMIN") && principalRole.equals("ROLE_ADMIN")) {
+				home = "redirect:/admin/home";
+			} else if (r.getName().equals("ROLE_USER") && principalRole.equals("ROLE_USER")) {
+				home = "redirect:/users/home";
+			} else if (r.getName().equals("ROLE_INSTRUCTOR") && principalRole.equals("ROLE_INSTRUCTOR")) {
+				home = "redirect:/instructor/home"; 
+			}
+		}
+		return home;
+
+		}
 	
 	@GetMapping("/users/home")
 	public String homeUser(Model model) {
@@ -37,8 +60,6 @@ public class UserController {
 		
 		return home;
 	}
-	
-	
 	@GetMapping("/users/perfil/{username}")
 	public String showPerfilForm(@PathVariable("username") String username, ModelMap model) {
 		
